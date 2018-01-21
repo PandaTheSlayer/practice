@@ -2,4 +2,33 @@ td, th {
     border: 1px solid black;
     min-width: 200px;
     max-width: 300px;
+    padding: 15px 7px;
+}
+* {
+    font-size: 13px;
+}
+
+.vars .input-data {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+.vars .input-data:last-child {
+    border-bottom: 0;
+}
+.vars .input-data {
+    position: relative;
+}
+.vars .input-data .input-group p {
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;    
+}
+.vars .input-data .input-group input[type="number"] {
+    margin-bottom: 15px;
+}
+.vars .input-data .input-group input {
+    border: 1px solid black;
+    /* padding: 7px 15px; */
+    box-sizing: border-box;
 }

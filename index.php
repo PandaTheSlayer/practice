@@ -27,11 +27,9 @@
 
         <table>
         <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th>P</th>
-            <th>Nc</th>
+            <th>Номер</th>
+            <th>Вопрос</th>
+            <th>врианты ответа</th>
         </tr>
         
             <?php
@@ -45,37 +43,42 @@
                         $vars = explode('|', $vars);
                         $vars_count = count($vars);
 
-                        echo "<td class='vars'>";
-                        foreach($vars as $var){
-                            echo "<p>$var</p>";
-                        }
-                        echo "</td>";
-
                         switch($vars_count){
                             case 2:
-                                $weights = "
-                                    <input type='number' value='1'><br>
-                                    <input type='number' value='0'><br>
-                                ";
+                                $weights = [
+                                    "<input type='number' value='1'><br>",
+                                    "<input type='number' value='0'><br>",
+                                ];
                                 break;
                             case 3:
-                                $weights = "
-                                    <input type='number' value='1'><br>
-                                    <input type='number' value='0.5'><br>
-                                    <input type='number' value='0'><br>
-                                ";
+                                $weights = [
+                                    "<input type='number' value='1'><br>",
+                                    "<input type='number' value='0.5'><br>",
+                                    "<input type='number' value='0'><br>",
+                                  ];
                                 break;
                             case 4:
-                                $weights = "
-                                    <input type='number' value='1'><br>
-                                    <input type='number' value='0.7'><br>
-                                    <input type='number' value='0.3'><br>
-                                    <input type='number' value='0'><br>
-                                    ";
+                                $weights = [
+                                    "<input type='number' value='1'><br>",
+                                    "<input type='number' value='0.7'><br>",
+                                    "<input type='number' value='0.3'><br>",
+                                    "<input type='number' value='0'><br>",
+                                    ];
                                 break;
                         }
 
-                        echo "<td>$weights</td>";
+                        echo "<td class='vars'>";
+                        foreach($vars as $var){
+                            echo "<div class='input-data'>";
+                            echo "<p class=''>$var</p>";
+                            echo "<div class='input-group'>";
+                            echo "<p><b>Вес:</b></p>";
+                            echo $weights[array_search($var, $vars)];
+                            echo "<p><b>Количество ответов:</b></p>";
+                            echo "<input type='number' value='0'>";
+                            echo "</div></div>";
+                        }
+                        echo "</td>";
 
                     echo "</tr>";
                 }
