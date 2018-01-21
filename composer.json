@@ -1,0 +1,15 @@
+{
+    "name": "panda/practice",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Nikita Gerasimchuk",
+            "email": "nnkvizitor@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "illuminate/database": "^5.5",
+        "symfony/var-dumper": "^4.0"
+    }
+}
