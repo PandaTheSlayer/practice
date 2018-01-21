@@ -9,79 +9,80 @@
     <title>Document</title>
 </head>
 <body>
-    
-<?php
-   
+    <div class="container">
+        <?php
+        
 
-   $mysqli = new mysqli('localhost', 'root', '', 'practice');
-   $mysqli->set_charset('utf8');
-   $result = $mysqli->query('SELECT * FROM `mdl_feedback_item` WHERE `feedback`="9"');
+        $mysqli = new mysqli('localhost', 'root', '', 'practice');
+        $mysqli->set_charset('utf8');
+        $result = $mysqli->query('SELECT * FROM `mdl_feedback_item` WHERE `feedback`="9"');
 
-   while($row = $result->fetch_assoc()){
-       $resultArr[] = $row;
-   }
+        while($row = $result->fetch_assoc()){
+            $resultArr[] = $row;
+        }
 
-   // resultArr содержит список вопросов к опроснику (выборка делается по уникальному ключу feedback, добытому в таблице mdl_feedback)
+        // resultArr содержит список вопросов к опроснику (выборка делается по уникальному ключу feedback, добытому в таблице mdl_feedback)
 
-?>
+        ?>
 
-<table>
-   <tr>
-       <th></th>
-       <th></th>
-       <th></th>
-       <th>P</th>
-       <th>Nc</th>
-   </tr>
-   
-       <?php
-           foreach($resultArr as $key=>$value){
-               $id = $key+1;
-               echo "<tr>";
-                   echo "<td>$id</td>";
-                   echo "<td>".$value['name']."</td>";
+        <table>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>P</th>
+            <th>Nc</th>
+        </tr>
+        
+            <?php
+                foreach($resultArr as $key=>$value){
+                    $id = $key+1;
+                    echo "<tr>";
+                        echo "<td>$id</td>";
+                        echo "<td>".$value['name']."</td>";
 
-                   $vars = str_replace('r>>>>>', '', $value['presentation']);
-                   $vars = explode('|', $vars);
-                   $vars_count = count($vars);
+                        $vars = str_replace('r>>>>>', '', $value['presentation']);
+                        $vars = explode('|', $vars);
+                        $vars_count = count($vars);
 
-                   echo "<td class='vars'>";
-                   foreach($vars as $var){
-                       echo "<p>$var</p>";
-                   }
-                   echo "</td>";
+                        echo "<td class='vars'>";
+                        foreach($vars as $var){
+                            echo "<p>$var</p>";
+                        }
+                        echo "</td>";
 
-                   switch($vars_count){
-                       case 2:
-                           $weights = "
-                               <input type='number' value='1'><br>
-                               <input type='number' value='0'><br>
-                           ";
-                           break;
-                       case 3:
-                           $weights = "
-                               <input type='number' value='1'><br>
-                               <input type='number' value='0.5'><br>
-                               <input type='number' value='0'><br>
-                           ";
-                           break;
-                       case 4:
-                           $weights = "
-                               <input type='number' value='1'><br>
-                               <input type='number' value='0.7'><br>
-                               <input type='number' value='0.3'><br>
-                               <input type='number' value='0'><br>
-                               ";
-                           break;
-                   }
+                        switch($vars_count){
+                            case 2:
+                                $weights = "
+                                    <input type='number' value='1'><br>
+                                    <input type='number' value='0'><br>
+                                ";
+                                break;
+                            case 3:
+                                $weights = "
+                                    <input type='number' value='1'><br>
+                                    <input type='number' value='0.5'><br>
+                                    <input type='number' value='0'><br>
+                                ";
+                                break;
+                            case 4:
+                                $weights = "
+                                    <input type='number' value='1'><br>
+                                    <input type='number' value='0.7'><br>
+                                    <input type='number' value='0.3'><br>
+                                    <input type='number' value='0'><br>
+                                    ";
+                                break;
+                        }
 
-                   echo "<td>$weights</td>";
+                        echo "<td>$weights</td>";
 
-               echo "</tr>";
-           }
-       ?>
-   
-</table>
+                    echo "</tr>";
+                }
+            ?>
+        
+        </table>
+    </div>
 </body>
 </html>
     
