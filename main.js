@@ -23,7 +23,7 @@ function calculateS(questions, var_ans, var_weights, k, ans_sum){
         for(let j = 0; j < var_ans[i].length; j++){
             tmp.push( (var_ans[i][j] * var_weights[i][j] * k[i][j])/ans_sum[i] );
         }
-        S.push(tmp);
+        S.push( tmp.reduce((acc, item) => acc + item).toFixed(4) );
     }
     return S;
 }
