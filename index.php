@@ -26,7 +26,7 @@
         ?>
 
         <table>
-        <tr>
+        <tr class="header">
             <th>Номер</th>
             <th>Вопрос</th>
             <th>врианты ответа</th>
@@ -35,7 +35,7 @@
             <?php
                 foreach($resultArr as $key=>$value){
                     $id = $key+1;
-                    echo "<tr>";
+                    echo "<tr class='question-row'>";
                         echo "<td>$id</td>";
                         echo "<td>".$value['name']."</td>";
 
@@ -46,23 +46,23 @@
                         switch($vars_count){
                             case 2:
                                 $weights = [
-                                    "<input type='number' value='1'><br>",
-                                    "<input type='number' value='0'><br>",
+                                    "<input type='number' class='weights' value='1'><br>",
+                                    "<input type='number' class='weights' value='0'><br>",
                                 ];
                                 break;
                             case 3:
                                 $weights = [
-                                    "<input type='number' value='1'><br>",
-                                    "<input type='number' value='0.5'><br>",
-                                    "<input type='number' value='0'><br>",
+                                    "<input type='number' class='weights' value='1'><br>",
+                                    "<input type='number' class='weights' value='0.5'><br>",
+                                    "<input type='number' class='weights' value='0'><br>",
                                   ];
                                 break;
                             case 4:
                                 $weights = [
-                                    "<input type='number' value='1'><br>",
-                                    "<input type='number' value='0.7'><br>",
-                                    "<input type='number' value='0.3'><br>",
-                                    "<input type='number' value='0'><br>",
+                                    "<input type='number' class='weights' value='1'><br>",
+                                    "<input type='number' class='weights' value='0.7'><br>",
+                                    "<input type='number' class='weights' value='0.3'><br>",
+                                    "<input type='number' class='weights' value='0'><br>",
                                     ];
                                 break;
                         }
@@ -75,7 +75,7 @@
                             echo "<p><b>Вес:</b></p>";
                             echo $weights[array_search($var, $vars)];
                             echo "<p><b>Количество ответов:</b></p>";
-                            echo "<input type='number' value='0'>";
+                            echo "<input type='number' class='answers' value='0'>";
                             echo "</div></div>";
                         }
                         echo "</td>";
@@ -86,6 +86,13 @@
         
         </table>
     </div>
+    <button id='draw-btn'>Вывести граф</button>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
     
