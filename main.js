@@ -2,22 +2,34 @@ document.addEventListener("DOMContentLoaded", function(){
     const questions = $('.question-row');                 // Получение объекта каждого вопроса
 
     $('#draw-btn').on('click', function(){
-        ans_sum = calculateAnsSum(questions);             // Количество ответов на каждый вопрос
-        var_ans = getVarAns(questions);                   // Количество ответов на каждый из вариантов вопроса
-        var_weights = getVarWeights(questions);           // Вес каждого варианта ответа
+        let ans_sum = calculateAnsSum(questions),             // Количество ответов на каждый вопрос
+            var_ans = getVarAns(questions),                   // Количество ответов на каждый из вариантов вопроса
+            var_weights = getVarWeights(questions),           // Вес каждого варианта ответа
+            k = calculateKs(var_ans, ans_sum),                // Соотношение количества ответов на каждый из вариантов 
+            S = calculateS(questions, var_ans, var_weights, k, ans_sum);
+            console.log(S);
 
-        console.log(ans_sum);
-        console.log(var_ans);
-        console.log(var_weights);
-
-        var k = calculateKs(var_ans, ans_sum);
-
-        console.log(k);
+        // console.log(ans_sum);
+        // console.log(var_ans);
+        // console.log(var_weights);
+        // console.log(k);
     })
 });
 
+function calculateS(questions, var_ans, var_weights, k, ans_sum){
+    let S = [];
+    for(let i = 0; i < var_ans.length; i++){
+        let tmp = [];
+        for(let j = 0; j < var_ans[i].length; j++){
+            tmp.push( (var_ans[i][j] * var_weights[i][j] * k[i][j])/ans_sum[i] );
+        }
+        S.push(tmp);
+    }
+    return S;
+}
+
 function calculateKs(var_ans, ans_sum) {
-    var k = [];
+    let k = [];
     var_ans.forEach((val, key) => {
         k[key] = [];
         val.forEach((val2) => {
