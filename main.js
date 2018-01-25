@@ -7,7 +7,10 @@ document.addEventListener("DOMContentLoaded", function(){
             var_weights = getVarWeights(questions),           // Вес каждого варианта ответа
             k = calculateKs(var_ans, ans_sum),                // Соотношение количества ответов на каждый из вариантов 
             S = calculateS(questions, var_ans, var_weights, k, ans_sum);
-            console.log(S);
+        
+        weightsJson = JSON.stringify(S);
+        
+        drawGraph(weightsJson);
 
         // console.log(ans_sum);
         // console.log(var_ans);
@@ -15,6 +18,14 @@ document.addEventListener("DOMContentLoaded", function(){
         // console.log(k);
     })
 });
+
+
+function drawGraph(weightsJson) {
+    var svg = d3.select("svg"),
+        width = +svg.attr("width"),
+        heigth = +svg.attr("heigth");
+}
+
 
 function calculateS(questions, var_ans, var_weights, k, ans_sum){
     let S = [];

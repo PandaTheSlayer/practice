@@ -91,6 +91,7 @@
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
+  <svg width="960" height="600"></svg>
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="main.js"></script>
 </body>
