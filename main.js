@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function(){
         let dataSet = createDataSet(questions_name, S);
 
         console.log(JSON.stringify(dataSet));
+        drawGraph();
 
         // console.log(ans_sum);
         // console.log(var_ans);
@@ -21,6 +22,47 @@ document.addEventListener("DOMContentLoaded", function(){
     })
 });
 
+
+function drawGraph(){
+    var nodes = new vis.DataSet([
+        {id: 1, label: 'Итоговая оценка за модуль'},
+        {id: 2, label: 'Как Вы считаете, повлияло ли количество материалов, размещенных на сайте, на итоговую оценку по дисциплине?'},
+        {id: 3, label: 'Как Вы считаете, повлияло ли количество тестов на Вашу подготовку к модулю?'},
+        {id: 4, label: 'Как Вы считаете, повлияло ли время, которое Вы затратили на прохождение теста, на итоговую оценку по дисциплине?'},
+        {id: 5, label: 'Как Вы считаете, повлияло ли количество лабораторных работ на итоговую оценку по дисциплине?'},
+        {id: 6, label: 'Как Вы считаете, сколько времени (в среднем) Вы тратили на подготовку к модулю?'}
+    ]);
+
+    // create an array with edges
+    var edges = new vis.DataSet([
+        {from: 6, to: 1},
+        {from: 5, to: 1},
+        {from: 4, to: 1},
+        {from: 3, to: 1},
+        {from: 2, to: 1}
+    ]);
+
+    // create a network
+    var container = document.getElementById('myNetwork');
+
+    // provide the data in the vis format
+    var data = {
+        nodes: nodes,
+        edges: edges
+    };
+    var options = {
+        locale: 'ru',
+        nodes: {
+            shape: 'text',
+            size: 150,
+            mass: 1
+            
+        }
+    };
+
+    // initialize your network!
+    var network = new vis.Network(container, data, options);
+}
 
 
 function createDataSet(questions_name, S) {

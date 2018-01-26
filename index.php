@@ -6,6 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        #myNetwork {
+            width: 100%;
+            height: 800px;
+            border: 1px solid black;
+            margin: 0 auto;
+        }
+    </style>
     <script type="text/javascript" src="node_modules/vis/dist/vis.js"></script>
     <link href="node_modules/vis/dist/vis.css" rel="stylesheet" type="text/css" />
     <title>Document</title>
@@ -89,6 +97,7 @@
         </table>
     </div>
     <button id='draw-btn'>Вывести граф</button>
+    <div id="myNetwork"></div>
     <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
