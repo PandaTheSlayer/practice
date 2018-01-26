@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="node_modules/vis/dist/vis.js"></script>
+    <link href="node_modules/vis/dist/vis.css" rel="stylesheet" type="text/css" />
     <title>Document</title>
 </head>
 <body>
@@ -37,7 +39,7 @@
                     $id = $key+1;
                     echo "<tr class='question-row'>";
                         echo "<td>$id</td>";
-                        echo "<td>".$value['name']."</td>";
+                        echo "<td class='question_name'>".$value['name']."</td>";
 
                         $vars = str_replace('r>>>>>', '', $value['presentation']);
                         $vars = explode('|', $vars);
@@ -91,8 +93,6 @@
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
-  <svg width="960" height="600"></svg>
-  <script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

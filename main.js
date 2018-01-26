@@ -1,16 +1,18 @@
 document.addEventListener("DOMContentLoaded", function(){
-    const questions = $('.question-row');                 // Получение объекта каждого вопроса
+    const questions = $('.question-row');                 // Получение объекта вопросов
+        
 
     $('#draw-btn').on('click', function(){
-        let ans_sum = calculateAnsSum(questions),             // Количество ответов на каждый вопрос
-            var_ans = getVarAns(questions),                   // Количество ответов на каждый из вариантов вопроса
-            var_weights = getVarWeights(questions),           // Вес каждого варианта ответа
-            k = calculateKs(var_ans, ans_sum),                // Соотношение количества ответов на каждый из вариантов 
-            S = calculateS(questions, var_ans, var_weights, k, ans_sum);
-        
-        weightsJson = JSON.stringify(S);
-        
-        drawGraph(weightsJson);
+        let ans_sum = calculateAnsSum(questions),                        // Количество ответов на каждый вопрос
+            questions_name = getQuestionsName(questions),                // Получить список вопросов
+            var_ans = getVarAns(questions),                              // Количество ответов на каждый из вариантов вопроса
+            var_weights = getVarWeights(questions),                      // Вес каждого варианта ответа
+            k = calculateKs(var_ans, ans_sum),                           // Соотношение количества ответов на каждый из вариантов 
+            S = calculateS(questions, var_ans, var_weights, k, ans_sum); // Общий вес каждого вопроса
+
+        let dataSet = createDataSet(questions_name, S);
+
+        console.log(JSON.stringify(dataSet));
 
         // console.log(ans_sum);
         // console.log(var_ans);
@@ -20,12 +22,29 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 
-function drawGraph(weightsJson) {
-    var svg = d3.select("svg"),
-        width = +svg.attr("width"),
-        heigth = +svg.attr("heigth");
+
+function createDataSet(questions_name, S) {
+    let dataSet = [];
+    for (let i = 0; i < questions_name.length; i++) {
+        
+        let tmp = {};
+        let question_name = questions_name[i];
+        let weight = S[i];
+        tmp.question_name = question_name;
+        tmp.weight = weight;
+        dataSet.push(tmp);
+
+    }
+    return dataSet;
 }
 
+function getQuestionsName(questions) {
+    let questions_name = [];
+    questions.each(function () {
+        questions_name.push($(this).find('.question_name').html());
+    });
+    return questions_name;
+}
 
 function calculateS(questions, var_ans, var_weights, k, ans_sum){
     let S = [];
