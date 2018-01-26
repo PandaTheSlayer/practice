@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="css/style.css">
     <style>
         #myNetwork {
-            width: 100%;
+            width: 50%;
             height: 800px;
-            border: 1px solid black;
+            
             margin: 0 auto;
         }
     </style>

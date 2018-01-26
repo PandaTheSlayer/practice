@@ -25,21 +25,23 @@ document.addEventListener("DOMContentLoaded", function(){
 
 function drawGraph(){
     var nodes = new vis.DataSet([
-        {id: 1, label: 'Итоговая оценка за модуль'},
-        {id: 2, label: 'Как Вы считаете, повлияло ли количество материалов, размещенных на сайте, на итоговую оценку по дисциплине?'},
-        {id: 3, label: 'Как Вы считаете, повлияло ли количество тестов на Вашу подготовку к модулю?'},
-        {id: 4, label: 'Как Вы считаете, повлияло ли время, которое Вы затратили на прохождение теста, на итоговую оценку по дисциплине?'},
-        {id: 5, label: 'Как Вы считаете, повлияло ли количество лабораторных работ на итоговую оценку по дисциплине?'},
-        {id: 6, label: 'Как Вы считаете, сколько времени (в среднем) Вы тратили на подготовку к модулю?'}
+        {id: 1, label: 'Итоговая оценка за модуль', shape: 'box', size: 250, font: {
+            size: 20
+        } },
+        {id: 2, label: 'Вопрос 1'},
+        {id: 3, label: 'Вопрос 2'},
+        {id: 4, label: 'Вопрос 3'},
+        {id: 5, label: 'Вопрос 4'},
+        {id: 6, label: "Вопрос 5"}
     ]);
 
     // create an array with edges
     var edges = new vis.DataSet([
-        {from: 6, to: 1},
-        {from: 5, to: 1},
-        {from: 4, to: 1},
+        {from: 2, to: 1, label: '0.6504'},
         {from: 3, to: 1},
-        {from: 2, to: 1}
+        {from: 4, to: 1},
+        {from: 5, to: 1},
+        {from: 6, to: 1}
     ]);
 
     // create a network
@@ -53,11 +55,15 @@ function drawGraph(){
     var options = {
         locale: 'ru',
         nodes: {
-            shape: 'text',
+            shape: 'ellipse',
             size: 150,
             mass: 1
-            
-        }
+        },
+        font: {
+            multi: true,
+            size: 50
+        },
+        physics: false
     };
 
     // initialize your network!
