@@ -96,7 +96,7 @@
         
         </table>
     </div>
-    <button id='draw-btn'>Вывести граф</button>
+    <button class='btn btn-primary' id='draw-btn'>Вывести граф</button>
     <div id="myNetwork"></div>
     <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"

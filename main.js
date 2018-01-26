@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
         let dataSet = createDataSet(questions_name, S);
 
-        console.log(JSON.stringify(dataSet));
-        drawGraph();
+        
+        drawGraph(dataSet);
 
         // console.log(ans_sum);
         // console.log(var_ans);
@@ -23,27 +23,46 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 
-function drawGraph(){
-    var nodes = new vis.DataSet([
-        {id: 1, label: 'Итоговая оценка за модуль', shape: 'box', size: 250, font: {
+function drawGraph(dataSet){
+    
+    // Вершины графа
+    var nodesArr = [];
+    nodesArr.push(
+        {id: 0, label: "Итоговая оценка за модуль", shape: "box", size: 250, font: {
             size: 20
-        } },
-        {id: 2, label: 'Вопрос 1'},
-        {id: 3, label: 'Вопрос 2'},
-        {id: 4, label: 'Вопрос 3'},
-        {id: 5, label: 'Вопрос 4'},
-        {id: 6, label: "Вопрос 5"}
-    ]);
+        }}
+    );
+    
+    dataSet.forEach( (elem, i) => {
+        nodesArr.push({
+            id: i+1,
+            label: "Вопрос " + Number(i+1),
+            shape: "ellipse"
+        })
+    });
 
-    // create an array with edges
-    var edges = new vis.DataSet([
-        {from: 2, to: 1, label: '0.6504'},
-        {from: 3, to: 1},
-        {from: 4, to: 1},
-        {from: 5, to: 1},
-        {from: 6, to: 1}
-    ]);
+    var nodes = new vis.DataSet(nodesArr);
+    
 
+    // Ребра графа
+    var edges_tmp = [];
+    dataSet.forEach( (elem, i) => {
+        edges_tmp.push({
+            from: i+1,
+            to: 0,
+            label: dataSet[i]['weight']
+        })
+    });
+    
+    var edges = new vis.DataSet(
+        // {from: 1, to: nodesArr[0].id, label: '0.6504'},
+        // {from: 2, to: nodesArr[0].id},
+        // {from: 3, to: nodesArr[0].id},
+        // {from: 4, to: nodesArr[0].id},
+        // {from: 5, to: nodesArr[0].id}
+        edges_tmp
+    );
+    console.log(edges);
     // create a network
     var container = document.getElementById('myNetwork');
 
@@ -58,10 +77,6 @@ function drawGraph(){
             shape: 'ellipse',
             size: 150,
             mass: 1
-        },
-        font: {
-            multi: true,
-            size: 50
         },
         physics: false
     };
