@@ -4,17 +4,13 @@
     $db->set_charset('utf8');
     $res = $db->query("SELECT * FROM `mdl_book` WHERE `course` = '14'");
 
-    while($row = $res->fetch_assoc()){
-        $books[] = $row;
-    }
+    $books = resultToAssocArray($res);
 
     //echo 'Количество лекций курса: ' . count($books);
 
     $grade_items = $db->query("SELECT * FROM `mdl_grade_items` WHERE `courseid`='14'");
 
-    while($row = $grade_items->fetch_assoc()){
-        $items[] = $row;
-    }
+    $items = resultToAssocArray($grade_items);
 
     //echo json_encode($items, JSON_UNESCAPED_UNICODE);
 
@@ -27,3 +23,9 @@
     };
 
     echo json_encode( array_map($mapper, $items), JSON_UNESCAPED_UNICODE );
+
+    function resultToAssocArray($result){
+        while($row = $result->fetch_assoc())
+            $arr[] = $row;
+        return $arr;
+    }
